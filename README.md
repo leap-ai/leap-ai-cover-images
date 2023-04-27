@@ -1,4 +1,4 @@
-# Leap AI Cover Images ⚡️
+# Leap AI Cover Images 🎆
 
 Welcome! This repo has a working implementation of how to generate AI cover images using Leap AI. ✨
 
