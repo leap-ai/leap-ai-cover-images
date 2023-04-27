@@ -1,0 +1,8 @@
+/* load custom font! */
+@font-face {
+  font-family: "mariofont";
+  src: url("mario.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
