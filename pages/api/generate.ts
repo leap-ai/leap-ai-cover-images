@@ -17,7 +17,6 @@ const generate = async (req: NextApiRequest, res: NextApiResponse) => {
   // instantiate sdk
   const leap = new Leap(useableKey);
 
-  // Now that we have a fine-tuned version of a model, we can generate images using it.
   let images = <string[]>[];
 
   const { data: image, error: imageError } = await leap.generate.generateImage({

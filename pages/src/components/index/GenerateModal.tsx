@@ -23,7 +23,15 @@ function GenerateModal({
   images,
   generate,
   setSelectedImg,
-}: any) {
+}: {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  loading: boolean;
+  images: string[];
+  generate: (prompt: string) => void;
+  setSelectedImg: (image: string) => void;
+}) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
       <ModalOverlay />
