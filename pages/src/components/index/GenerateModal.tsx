@@ -86,38 +86,40 @@ function GenerateModal({
               </VStack>
             )}
 
-            <Flex
-              gridGap={"16px"}
-              h="auto"
-              flexDir={"row"}
-              flexWrap={"wrap"}
-              justify={"center"}
-            >
-              {images.map((image: string, index: number) => (
-                <Box
-                  _hover={{
-                    cursor: "pointer",
-                    border: "3px solid #ff6b96",
-                    borderRadius: "15px",
-                  }}
-                  maxW={"170px"}
-                  mb={2}
-                  key={image}
-                  className="image-item"
-                  position="relative"
-                  onClick={() => {
-                    setSelectedImg(image);
-                    onClose();
-                  }}
-                >
-                  <Image
-                    src={image}
-                    objectFit="contain"
-                    borderRadius={"12px"}
-                  />
-                </Box>
-              ))}
-            </Flex>
+            {images && images.length > 0 && (
+              <Flex
+                gridGap={"16px"}
+                h="auto"
+                flexDir={"row"}
+                flexWrap={"wrap"}
+                justify={"center"}
+              >
+                {images.map((image: string, index: number) => (
+                  <Box
+                    _hover={{
+                      cursor: "pointer",
+                      border: "3px solid #ff6b96",
+                      borderRadius: "15px",
+                    }}
+                    maxW={"170px"}
+                    mb={2}
+                    key={image}
+                    className="image-item"
+                    position="relative"
+                    onClick={() => {
+                      setSelectedImg(image);
+                      onClose();
+                    }}
+                  >
+                    <Image
+                      src={image}
+                      objectFit="contain"
+                      borderRadius={"12px"}
+                    />
+                  </Box>
+                ))}
+              </Flex>
+            )}
           </VStack>
         </ModalBody>
       </ModalContent>
