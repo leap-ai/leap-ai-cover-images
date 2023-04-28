@@ -6,12 +6,12 @@ const prompts = [
   {
     label: "Sunset ☀️",
     prompt:
-      "Illustration of sunset from the beach by Dan Mumford, colorful sunset, beautiful sunset, green, golden, blue vibes",
+      "wallpaper of beautiful Landscape sunset over the ocean, full of colors",
   },
   {
     label: "Space 🚀",
     prompt:
-      "Illustration of jupiter clouds by dan mumford, alien landscape and vegetation, epic scene, a lot of swirling clouds, high exposure, highly detailed, fantastical, vibrant red tinted colors, uhd",
+      "galaxy full of colors, vibrant, epic composition, cinematic, Landscape veduta photo by Dan Mumford, detailed landscape painting, rendered in Enscape, Miyazaki, Nausicaa Ghibli, 4k detailed post processing, unreal engine",
   },
   {
     label: "Futuristic 🤖",
@@ -29,8 +29,8 @@ const prompts = [
       "futuristic tree house, hyper realistic, epic composition, cinematic, landscape vista photography by Carr Clifton & Galen Rowell, Landscape veduta photo by Dustin Lefevre & tdraw, detailed landscape painting by Ivan Shishkin, rendered in Enscape, Miyazaki, Nausicaa Ghibli, 4k detailed post processing, unreal engine",
   },
   {
-    label: "World 🌎",
-    prompt: "Painting of the Earth by dan mumford",
+    label: "Fluid 🎨",
+    prompt: "wallpaper of liquid gradient, fluid, colorful",
   },
   {
     label: "Dream 🌌",
