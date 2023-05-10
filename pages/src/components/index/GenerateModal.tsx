@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   Image,
+  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -126,6 +127,16 @@ function GenerateModal({
                     />
                   </Box>
                 ))}
+                <Text fontSize="xs" fontWeight="bold">
+                  Generated with{" "}
+                  <Link
+                    target="_blank"
+                    href="https://tryleap.ai"
+                    textDecoration={"underline"}
+                  >
+                    Leap API
+                  </Link>{" "}
+                </Text>
               </Flex>
             )}
           </VStack>

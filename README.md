@@ -6,23 +6,20 @@ Try it out [here](https://ai-cover-images.vercel.app/)!
 
 Get started by forking this repository (button top right), and downloading it to your computer. From there follow the below :)
 
+### Setup
+
+1. Add your credentials in .env, following the .envExample file
+2. Head to `pages/index.tsx` for editing text, prompts, and colors to match your theme
+3. Adjust image prompts in `helpers/prompts.ts`
+4. Adjust the number of images generated w/ the numberOfImages parameter in `/pages/api/generate`
+
 ### Run it locally
 
 1. Open the terminal
 2. Run `npm install` to grab the necessary packages
 3. Hit `npm run dev` to start your server on `http://localhost:3000`
-
-### How to get AI cover images
-
-1. Add your API Key from Leap AI
-2. Click the change image button
-3. Pick a style to generate
-
-### Making it your own
-
-1. Head to `pages/index.tsx` for editing text, prompts, and colors to match your theme
-2. Adjust image prompts in `helpers/prompts.ts`
-3. Adjust the number of images generated w/ the numberOfImages parameter in `/pages/api/generate`
+4. Click the change image button
+5. Pick a style to generate
 
 ### Deploy to the world
 

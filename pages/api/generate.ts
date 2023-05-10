@@ -3,19 +3,18 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const generate = async (req: NextApiRequest, res: NextApiResponse) => {
   // parse the `body` parameter for apiKey and prompt
-  const { apiKey, prompt } = req.body;
+  const { prompt } = req.body;
 
   // check for api key
   const api_key = process.env.API_KEY as string;
-  const useableKey = apiKey ? apiKey : api_key;
 
-  if (!useableKey) {
+  if (!api_key) {
     res.status(400).json({ error: "Invalid request. Check API Key" });
     return;
   }
 
   // instantiate sdk
-  const leap = new Leap(useableKey);
+  const leap = new Leap(api_key);
 
   let images = <string[]>[];
 

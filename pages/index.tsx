@@ -1,28 +1,21 @@
 import {
   Box,
   Button,
-  Flex,
   Heading,
-  IconButton,
   Image,
-  Input,
-  InputGroup,
-  InputRightElement,
   Link,
   Text,
   VStack,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import { useCallback, useState } from "react";
 import { NextSeo } from "next-seo";
-import { HiOutlineKey as KeyIcon } from "react-icons/hi";
+import { useCallback, useState } from "react";
 import { BsImage } from "react-icons/bs";
 import GenerateModal from "./src/components/index/GenerateModal";
 import GithubButton from "./src/components/index/GithubButton";
 
 const Home = () => {
-  const [apiKey, setApiKey] = useState<string>("");
   const [selectedImg, setSelectedImg] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -32,35 +25,31 @@ const Home = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // this method generates the images
-  const generate = useCallback(
-    async (prompt: string) => {
-      setLoading(true);
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          apiKey,
-          prompt,
-        }),
+  const generate = useCallback(async (prompt: string) => {
+    setLoading(true);
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt,
+      }),
+    });
+    const data = await response.json();
+    if (data.error) {
+      toast({
+        title: "Error",
+        description: data.error + " " + data.message,
+        status: "error",
       });
-      const data = await response.json();
-      if (data.error) {
-        toast({
-          title: "Error",
-          description: data.error + " " + data.message,
-          status: "error",
-        });
-        setLoading(false);
-        return;
-      }
-
-      setImages(data.images);
       setLoading(false);
-    },
-    [apiKey]
-  );
+      return;
+    }
+
+    setImages(data.images);
+    setLoading(false);
+  }, []);
 
   return (
     <>
@@ -100,7 +89,7 @@ const Home = () => {
             }
             alt="CoverImage"
           />
-          <VStack px={6} gap={4}>
+          <VStack px={6} gap={8}>
             <Box>
               <Heading
                 mt={3}
@@ -113,38 +102,6 @@ const Home = () => {
               </Heading>
             </Box>
 
-            <Heading fontFamily={"Verdana"} fontSize={"lg"} textAlign={"left"}>
-              1) Add your API Key from{" "}
-              <Link
-                target="_blank"
-                href="https://tryleap.ai"
-                textDecoration={"underline"}
-              >
-                Leap AI
-              </Link>{" "}
-            </Heading>
-            <InputGroup size="md" w={{ base: "full", md: "30rem" }}>
-              <Input
-                py={4}
-                _hover={{ borderColor: "red.400" }}
-                borderColor={"red.400"}
-                onChange={(e) => setApiKey(e.target.value)}
-                value={apiKey}
-                placeholder="Add your API KEY here"
-              />
-              <InputRightElement width="3rem">
-                <IconButton
-                  onClick={() => {
-                    window.open("https://tryleap.ai", "_blank");
-                  }}
-                  aria-label="key"
-                  icon={<KeyIcon />}
-                />
-              </InputRightElement>
-            </InputGroup>
-            <Heading fontFamily={"Verdana"} fontSize={"lg"} textAlign={"left"}>
-              2) Change cover image
-            </Heading>
             <Button
               w={{ base: "full", md: "30rem" }}
               _hover={loading ? {} : { opacity: 0.8 }}
