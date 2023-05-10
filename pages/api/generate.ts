@@ -20,7 +20,7 @@ const generate = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const { data: image, error: imageError } = await leap.generate.generateImage({
     prompt: prompt,
-    numberOfImages: 4,
+    numberOfImages: 1,
     steps: 30,
     upscaleBy: "x1",
     height: 360,

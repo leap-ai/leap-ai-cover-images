@@ -1,31 +1,34 @@
+import prompts from "@/helpers/prompts";
 import {
   Box,
   Button,
+  Flex,
   Heading,
   Image,
+  Input,
+  InputGroup,
   Link,
   Text,
   VStack,
-  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import { useCallback, useState } from "react";
 import { BsImage } from "react-icons/bs";
-import GenerateModal from "./src/components/index/GenerateModal";
 import GithubButton from "./src/components/index/GithubButton";
 
 const Home = () => {
   const [selectedImg, setSelectedImg] = useState<string>("");
+  const [prompt, setPrompt] = useState<string>(
+    "futuristic tree house, hyper realistic, epic composition, cinematic, landscape vista photography by Carr Clifton & Galen Rowell, Landscape veduta photo by Dustin Lefevre & tdraw, detailed landscape painting by Ivan Shishkin, rendered in Enscape, Miyazaki, Nausicaa Ghibli, 4k detailed post processing, unreal engine"
+  );
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [images, setImages] = useState<string[]>([]);
 
   const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // this method generates the images
-  const generate = useCallback(async (prompt: string) => {
+  const generate = useCallback(async () => {
     setLoading(true);
     const response = await fetch("/api/generate", {
       method: "POST",
@@ -47,9 +50,9 @@ const Home = () => {
       return;
     }
 
-    setImages(data.images);
+    setSelectedImg(data.images);
     setLoading(false);
-  }, []);
+  }, [prompt]);
 
   return (
     <>
@@ -71,14 +74,14 @@ const Home = () => {
           maxW={700}
           w={"100%"}
           bg={"#fff"}
-          mt={8}
+          mt={[20, 20, 8]}
           roundedTop="lg"
           roundedBottom="lg"
           pb={8}
         >
           <Image
             opacity={loading ? 0.5 : 1}
-            maxH={200}
+            maxH={220}
             w="100%"
             roundedTop="lg"
             objectFit="cover"
@@ -96,18 +99,31 @@ const Home = () => {
                 fontFamily={"Verdana"}
                 fontWeight={"bold"}
                 fontSize={"2xl"}
-                textAlign={"left"}
+                textAlign={"center"}
               >
                 Get Amazing AI Cover Images In Seconds! 🔥
               </Heading>
             </Box>
 
+            <InputGroup size="md" w={{ base: "full", md: "30rem" }}>
+              <Input
+                py={4}
+                borderColor={"gray.500"}
+                focusBorderColor="gray.500"
+                _hover={{ borderColor: "gray.500" }}
+                variant="outline"
+                onChange={(e) => setPrompt(e.target.value)}
+                value={prompt}
+                placeholder="Enter an image prompt here"
+              />
+            </InputGroup>
             <Button
               w={{ base: "full", md: "30rem" }}
               _hover={loading ? {} : { opacity: 0.8 }}
               _active={
                 loading ? {} : { transform: "scale(0.98)", opacity: 0.7 }
               }
+              isLoading={loading}
               transitionDuration="200ms"
               bg="#ff6b96"
               color="white"
@@ -115,60 +131,44 @@ const Home = () => {
               rounded="full"
               fontSize="lg"
               onClick={() => {
-                onOpen();
+                generate();
               }}
               rightIcon={<BsImage />}
             >
-              Change Cover
+              Generate Cover
             </Button>
+
+            <Flex justify={"center"} wrap={["wrap", "wrap"]} gap={4}>
+              {prompts.map((prompt, index) => (
+                <Button
+                  key={index}
+                  rounded={"full"}
+                  onClick={() => {
+                    setPrompt(prompt.prompt);
+                  }}
+                  size="sm"
+                  colorScheme="green"
+                >
+                  {prompt.label}{" "}
+                </Button>
+              ))}
+            </Flex>
+            <VStack gap={2}>
+              <Text fontSize="xs" fontWeight="bold" textAlign={"center"}>
+                Takes about 30 seconds. Generated with{" "}
+                <Link
+                  target="_blank"
+                  href="https://tryleap.ai"
+                  textDecoration={"underline"}
+                >
+                  Leap API
+                </Link>{" "}
+              </Text>
+            </VStack>
           </VStack>
         </VStack>
-        <GenerateModal
-          isOpen={isOpen}
-          onOpen={onOpen}
-          onClose={onClose}
-          loading={loading}
-          images={images}
-          generate={generate}
-          setSelectedImg={setSelectedImg}
-        />
-        <GithubButton />
 
-        <Box
-          pos={"fixed"}
-          bottom={0}
-          w={"100%"}
-          bg={"#fff"}
-          color={"#1c1c1c"}
-          zIndex={999}
-          p={2}
-        >
-          <Box textAlign="center" fontSize="xl">
-            <Text fontSize="xs" fontWeight="bold">
-              Built with{" "}
-              <Link
-                target="_blank"
-                href="https://tryleap.ai"
-                textDecoration={"underline"}
-              >
-                Leap API
-              </Link>{" "}
-              by{" "}
-              <Link target="_blank" href="https://twitter.com/thealexshaq">
-                alex
-              </Link>
-              . Create your own AI image generator{" "}
-              <Link
-                target="_blank"
-                href="https://github.com/alexschachne/leap-ai-cover-images"
-                textDecoration={"underline"}
-              >
-                here
-              </Link>{" "}
-              🚀
-            </Text>
-          </Box>
-        </Box>
+        <GithubButton />
       </VStack>
     </>
   );
