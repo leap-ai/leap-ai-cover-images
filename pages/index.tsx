@@ -55,7 +55,7 @@ const Home = () => {
     <>
       <NextSeo
         title="Leap AI Cover Images"
-        description="Leap AI Cover Imaegs is a web app that uses the Leap AI API to generate AI Cover Images. It's built with Next.js, Chakra UI, and Leap AI."
+        description="Leap AI Cover Images is a web app that uses the Leap AI API to generate AI Cover Images. It's built with Next.js, Chakra UI, and Leap AI."
       />
       <VStack
         minH="100vh"
