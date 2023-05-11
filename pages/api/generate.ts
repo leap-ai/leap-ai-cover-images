@@ -24,7 +24,7 @@ const generate = async (req: NextApiRequest, res: NextApiResponse) => {
     steps: 30,
     upscaleBy: "x1",
     height: 360,
-    width: 800,
+    width: 900,
   });
 
   if (imageError) {
