@@ -23,8 +23,8 @@ const generate = async (req: NextApiRequest, res: NextApiResponse) => {
     numberOfImages: 1,
     steps: 30,
     upscaleBy: "x1",
-    height: 360,
-    width: 900,
+    height: 450,
+    width: 800,
   });
 
   if (imageError) {
