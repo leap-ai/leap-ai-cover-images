@@ -71,7 +71,7 @@ const Home = () => {
         fontFamily={"Verdana"}
       >
         <VStack
-          maxW={700}
+          maxW={900}
           w={"100%"}
           bg={"#fff"}
           mt={[20, 20, 8]}
@@ -81,7 +81,7 @@ const Home = () => {
         >
           <Image
             opacity={loading ? 0.5 : 1}
-            maxH={220}
+            maxH={360}
             w="100%"
             roundedTop="lg"
             objectFit="cover"
