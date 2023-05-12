@@ -6,6 +6,8 @@ Try it out [here](https://ai-cover-images.vercel.app/)!
 
 Get started by forking this repository (button top right), and downloading it to your computer. From there follow the below :)
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/alexschachne/leap-ai-cover-images.git)
+
 ### Setup
 
 1. Add your credentials in .env, following the .envExample file
