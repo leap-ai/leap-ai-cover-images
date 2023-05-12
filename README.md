@@ -18,8 +18,8 @@ Get started by forking this repository (button top right), and downloading it to
 1. Open the terminal
 2. Run `npm install` to grab the necessary packages
 3. Hit `npm run dev` to start your server on `http://localhost:3000`
-4. Click the change image button
-5. Pick a style to generate
+4. Enter a prompt or choose a style to generate
+5. Click the Generate Cover Button
 
 ### Deploy to the world
 
