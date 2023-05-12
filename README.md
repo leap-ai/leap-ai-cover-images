@@ -6,8 +6,6 @@ Try it out [here](https://ai-cover-images.vercel.app/)!
 
 Get started by forking this repository (button top right), and downloading it to your computer. From there follow the below :)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/alexschachne/leap-ai-cover-images.git)
-
 ### Setup
 
 1. Add your credentials in .env, following the .envExample file
@@ -28,6 +26,8 @@ Get started by forking this repository (button top right), and downloading it to
 1. Push all your changes to Github (or another git provider)
 2. Head to vercel.app, import your repo, and hit deploy
 3. note: you will need vercel pro plan or `/pages/api/generate` call will likely timeout after 10 sec. You can also deploy on [Zeet](https://zeet.co/) to avoid this issue.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/alexschachne/leap-ai-cover-images.git)
 
 ### You've got off localhost 👏
 
