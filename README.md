@@ -33,6 +33,8 @@ Get started by forking this repository (button top right), and downloading it to
 2. Head to vercel.app, import your repo, and hit deploy
 3. note: you will need vercel pro plan or `/pages/api/generate` call will likely timeout after 10 sec. You can also deploy on [Zeet](https://zeet.co/) to avoid this issue.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/alexschachne/leap-ai-cover-images.git)
+
 ### You've got off localhost 👏
 
 This is huge! You've got an AI image app running on the web, and you can share it with the world.
