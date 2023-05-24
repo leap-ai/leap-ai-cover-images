@@ -1,1 +1,7 @@
+# You can get your API key from https://www.tryleap.ai/
+
 API_KEY=enter-your-key-here
+
+# If you want to use Posthog Analytics, you can add your tracking ID here
+
+NEXT_PUBLIC_POSTHOG_KEY=enter-your-key-here

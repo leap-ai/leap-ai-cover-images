@@ -1,4 +1,5 @@
 import { HStack, Text } from "@chakra-ui/react";
+import { posthog } from "posthog-js";
 import { AiFillGithub } from "react-icons/ai";
 
 const GithubButton = () => {
@@ -15,9 +16,10 @@ const GithubButton = () => {
       pos="absolute"
       top={0}
       right={4}
-      onClick={() =>
-        window.open("https://github.com/alexschachne/leap-ai-cover-images")
-      }
+      onClick={() => {
+        posthog.capture("clickedGitHub");
+        window.open("https://github.com/alexschachne/leap-ai-cover-images");
+      }}
     >
       <AiFillGithub color="black" />
       <Text fontWeight={"bold"} color={"#1c1c1c"}>

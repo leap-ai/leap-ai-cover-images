@@ -6,6 +6,12 @@ Try it out [here](https://ai-cover-images.vercel.app/)!
 
 Get started by forking this repository (button top right), and downloading it to your computer. From there follow the below :)
 
+# Getting started
+
+1. Learn more about [AI Backgrounds with Leap](https://www.tryleap.ai/use-cases/backgrounds-headers)
+2. Read our [AI Backgrounds Guide](https://www.tryleap.ai/docs/generating-backgrounds)
+3. Visit the [Leap Developer Hub](https://www.tryleap.ai/developers)
+
 ### Setup
 
 1. Add your credentials in .env, following the .envExample file

@@ -10,12 +10,15 @@ import {
   Link,
   Text,
   VStack,
+  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import { useCallback, useState } from "react";
-import { BsImage } from "react-icons/bs";
+import { BsCloudDownload, BsImage } from "react-icons/bs";
 import GithubButton from "./src/components/index/GithubButton";
+import PopupModal from "./src/components/index/PopupModal";
+import { posthog } from "posthog-js";
 
 const Home = () => {
   const [selectedImg, setSelectedImg] = useState<string>("");
@@ -24,6 +27,8 @@ const Home = () => {
   );
 
   const [loading, setLoading] = useState<boolean>(false);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const toast = useToast();
 
@@ -52,6 +57,10 @@ const Home = () => {
 
     setSelectedImg(data.images);
     setLoading(false);
+
+    setTimeout(() => {
+      onOpen();
+    }, 2000);
   }, [prompt]);
 
   return (
@@ -79,19 +88,44 @@ const Home = () => {
           roundedBottom="lg"
           pb={8}
         >
-          <Image
-            opacity={loading ? 0.5 : 1}
-            maxH={360}
-            w="100%"
-            roundedTop="lg"
-            objectFit="cover"
-            src={
-              selectedImg
-                ? selectedImg
-                : "https://replicate.delivery/pbxt/4kw2JSufYNV0AK76QGZHEI3EuUhkxTZ43O9rff2LWy4czSNhA/out.png"
-            }
-            alt="CoverImage"
-          />
+          <Flex pos={"relative"} w={"full"}>
+            <Image
+              opacity={loading ? 0.5 : 1}
+              maxH={360}
+              w="100%"
+              roundedTop="lg"
+              objectFit="cover"
+              src={
+                selectedImg
+                  ? selectedImg
+                  : "https://replicate.delivery/pbxt/4kw2JSufYNV0AK76QGZHEI3EuUhkxTZ43O9rff2LWy4czSNhA/out.png"
+              }
+              alt="CoverImage"
+            />
+            {selectedImg && (
+              <Button
+                pos={"absolute"}
+                bg="#fff"
+                color="#1c1c1c"
+                p={3}
+                bottom={0}
+                right={0}
+                opacity={0.8}
+                _hover={{ opacity: 0.8 }}
+                _active={{ transform: "scale(0.98)", opacity: 0.7 }}
+                rounded="md"
+                fontSize="md"
+                onClick={() => {
+                  posthog.capture("openedDownloadModal");
+                  onOpen();
+                }}
+                rightIcon={<BsCloudDownload />}
+              >
+                Download
+              </Button>
+            )}
+          </Flex>
+
           <VStack px={6} gap={8}>
             <Box>
               <Heading
@@ -132,11 +166,19 @@ const Home = () => {
               fontSize="lg"
               onClick={() => {
                 generate();
+                posthog.capture("generatedImage");
               }}
               rightIcon={<BsImage />}
             >
               Generate Cover
             </Button>
+
+            <PopupModal
+              isOpen={isOpen}
+              onOpen={onOpen}
+              onClose={onClose}
+              selectedImg={selectedImg}
+            />
 
             <Flex justify={"center"} wrap={["wrap", "wrap"]} gap={4}>
               {prompts.map((prompt, index) => (
