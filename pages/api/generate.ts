@@ -1,5 +1,6 @@
 import { Leap } from "@leap-ai/sdk";
 import { NextApiRequest, NextApiResponse } from "next";
+import { nsfwCheck } from "../../helpers/nsfw";
 
 const generate = async (req: NextApiRequest, res: NextApiResponse) => {
   // parse the `body` parameter for apiKey and prompt
@@ -26,6 +27,14 @@ const generate = async (req: NextApiRequest, res: NextApiResponse) => {
     height: 384,
     width: 832,
   });
+
+  const { isNsfw } = nsfwCheck(prompt);
+
+  if (isNsfw) {
+    res.status(400).json({
+      error: "NSFW prompt detected. Please try again with a different prompt.",
+    });
+  }
 
   if (imageError) {
     res.status(500).json(imageError);
