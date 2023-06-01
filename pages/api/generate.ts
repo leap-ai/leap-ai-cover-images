@@ -19,15 +19,6 @@ const generate = async (req: NextApiRequest, res: NextApiResponse) => {
 
   let images = <string[]>[];
 
-  const { data: image, error: imageError } = await leap.generate.generateImage({
-    prompt: prompt,
-    numberOfImages: 1,
-    steps: 30,
-    upscaleBy: "x1",
-    height: 384,
-    width: 832,
-  });
-
   const { isNsfw } = nsfwCheck(prompt);
 
   if (isNsfw) {
@@ -35,6 +26,19 @@ const generate = async (req: NextApiRequest, res: NextApiResponse) => {
       error: "NSFW prompt detected. Please try again with a different prompt.",
     });
   }
+
+  const { data: image, error: imageError } = await leap.generate.generateImage({
+    prompt: prompt,
+    numberOfImages: 1,
+    steps: 30,
+    upscaleBy: "x1",
+    height: 384,
+    width: 832,
+    modelId:
+      Math.random() > 0.5
+        ? "8b1b897c-d66d-45a6-b8d7-8e32421d02cf" // SD 1.5
+        : "ee88d150-4259-4b77-9d0f-090abe29f650	", // SD 2.1
+  });
 
   if (imageError) {
     res.status(500).json(imageError);
