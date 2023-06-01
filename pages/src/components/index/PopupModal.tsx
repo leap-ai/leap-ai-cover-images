@@ -62,7 +62,7 @@ function PopupModal({
               onClick={() => {
                 posthog.capture("clickedLeapCTA");
                 window.open(
-                  "https://www.tryleap.ai/use-cases/backgrounds-headers",
+                  "https://www.tryleap.ai/use-cases/backgrounds-headers?utm_source=cover-images",
                   "_blank"
                 );
               }}
