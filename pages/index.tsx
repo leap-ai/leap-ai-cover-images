@@ -200,7 +200,7 @@ const Home = () => {
                 Takes about 30 seconds. Generated with{" "}
                 <Link
                   target="_blank"
-                  href="https://tryleap.ai"
+                  href="https://tryleap.ai/?utm_source=cover-images"
                   textDecoration={"underline"}
                 >
                   Leap API
