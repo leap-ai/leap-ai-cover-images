@@ -27,7 +27,7 @@ const generate = async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
 
-  const random = Math.random();
+  const random = Math.floor(Math.random() * 100);
   const { data: image, error: imageError } = await leap.generate.generateImage({
     prompt: prompt,
     numberOfImages: 1,
@@ -36,9 +36,9 @@ const generate = async (req: NextApiRequest, res: NextApiResponse) => {
     height: 384,
     width: 832,
     modelId:
-      random > 0 && random < 0.3
+      random > 0 && random <= 30
         ? "8b1b897c-d66d-45a6-b8d7-8e32421d02cf" // SD 1.5
-        : random > 0.3 && random < 0.6
+        : random > 30 && random < 65
         ? "eab32df0-de26-4b83-a908-a83f3015e971	" // realistic vision
         : "ee88d150-4259-4b77-9d0f-090abe29f650	", // SD 2.1
   });
