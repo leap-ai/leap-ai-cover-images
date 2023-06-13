@@ -12,7 +12,7 @@
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@leap-ai/sdk": "^0.0.119",
+    "@leap-ai/sdk": "1.0.0-beta.1",
     "@next/font": "13.1.6",
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",
