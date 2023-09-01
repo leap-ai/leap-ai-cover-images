@@ -48,7 +48,7 @@ function PopupModal({
               fontWeight={"bold"}
               fontSize={"2xl"}
             >
-              Add AI generated images to your website?
+              Generate AI images & headshots with Leap AI
             </Text>
 
             <Button
@@ -75,7 +75,7 @@ function PopupModal({
                 />
               }
             >
-              Build with Leap API
+              Get Started Free
             </Button>
 
             <VStack mt={4} gap={2}>
